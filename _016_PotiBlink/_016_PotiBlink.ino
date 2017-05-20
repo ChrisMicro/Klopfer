@@ -22,8 +22,6 @@
 #define LED3 PB11
 #define LED4 PB10
 
-
-
 void setup()
 {
   pinMode(LED1, OUTPUT);
@@ -32,6 +30,9 @@ void setup()
   pinMode(LED4, OUTPUT);
 
   pinMode(POTI1, INPUT_ANALOG);
+  pinMode(POTI2, INPUT_ANALOG);
+  pinMode(POTI3, INPUT_ANALOG);
+  pinMode(POTI4, INPUT_ANALOG);
 
 }
 
