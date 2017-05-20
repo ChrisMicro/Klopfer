@@ -13,4 +13,4 @@ When the directory doesn't exist yet, just create it.
 open the Arduino IDE, go under File/Preferences, and insert under "Additional Boards Manager URLs" the following file:
 https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json
 
-5. under Tools/Board/Boards Manager install the "SMT32 Cores by ST-Microelectronics" package.
+5. under Tools/Board/Boards Manager install the "STM32 Cores by ST-Microelectronics" package.
