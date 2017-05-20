@@ -23,13 +23,10 @@
 #define LED4 PB10
 
 
-
 void setup()
 {
   pinMode(LED1, OUTPUT);
-  pinMode(LED2, OUTPUT);
-  pinMode(LED3, OUTPUT);
-  pinMode(LED4, OUTPUT);
+
 
   pinMode(POTI1, INPUT_ANALOG);
 
@@ -38,32 +35,13 @@ void setup()
 void loop()
 {
   int v1;
-  int v2;
-  int v3;
-  int v4;
 
   v1 = map(analogRead( POTI1 ), 0, 4095, 20, 1000); // map analog range 0..4094 to values 20..1000
-  v2 = map(analogRead( POTI2 ), 0, 4095, 20, 1000);
-  v3 = map(analogRead( POTI3 ), 0, 4095, 20, 1000);
-  v4 = map(analogRead( POTI4 ), 0, 4095, 20, 1000);
   
   digitalWrite(LED1, 0);
   delay( v1  );
   digitalWrite(LED1, 1);
 
-  digitalWrite(LED2, 0);
-  delay( v2  );
-  digitalWrite(LED2, 1);
-
-  digitalWrite(LED2, 0);
-  delay( v3  );
-  digitalWrite(LED2, 1);
-
-  digitalWrite(LED3, 0);
-  delay( v4  );
-  digitalWrite(LED3, 1);
-
   delay(100);
-
 
 }
