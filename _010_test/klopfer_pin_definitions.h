@@ -19,4 +19,9 @@
 #define POTI5 PB0
 #define POTI6 PB1
 
+// MOTORS
+#define PWM_MOTOR1 PB6
+#define PWM_MOTOR2 PB7
+#define PWM_MOTOR3 PB8
+#define PWM_MOTOR4 PB9
 

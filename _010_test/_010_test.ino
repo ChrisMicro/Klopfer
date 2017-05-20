@@ -33,12 +33,18 @@ void setup()
   pinMode(POTI4, INPUT_ANALOG);
   pinMode(POTI5, INPUT_ANALOG);
   pinMode(POTI6, INPUT_ANALOG);
+
+  pinMode(PWM_MOTOR1, PWM);
+  pinMode(PWM_MOTOR2, PWM);
+  pinMode(PWM_MOTOR3, PWM);
+  pinMode(PWM_MOTOR4, PWM);
+  
 }
 
 
 void loop()
 {
     digitalWrite(LED1, !digitalRead(LED1)); // toggle led
-    delay(100);
+    delay(1000);
 
 }
