@@ -1,13 +1,17 @@
-// blink all LEDs 
-// Klopfer Percusive Controller
+/*
+ blink all LEDs 
+ Klopfer Percusive Controller
 
-#define LED0 PB6
-#define LED1 PB7
-#define LED2 PB8
-#define LED3 PB9
+  May 2017, ChrisMicro
+*/
+
+#define LED1 PB12
+#define LED2 PB13
+#define LED3 PB11
+#define LED4 PB10
 
 #define NUMLEDS 4
-const uint8_t Led[] = {LED0, LED1, LED2, LED3};
+const uint8_t Led[] = {LED1, LED2, LED3, LED4};
 
 void setup()
 {
