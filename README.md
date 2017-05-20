@@ -1,12 +1,12 @@
 # Klopfer
 
 # BluePillSound
-using a STM32F103 with Arduino Software ( [Blue Pill](http://wiki.stm32duino.com/index.php?title=Blue_Pill) ) as synthesizer
+using a STM32F103 with Arduino Software ( [Blue Pill](http://wiki.stm32duino.com/index.php?title=Blue_Pill) ) as percussive controller
 
 [How to install the Arduino Software](http://grauonline.de/wordpress/?page_id=1004)
 
 <p align="left">
-  <img src="/doc/Klopfer_SCH.pdf" width="1280"/>
+  <img src="/doc/schematic.png" width="1280"/>
 </p>
 
 note:
