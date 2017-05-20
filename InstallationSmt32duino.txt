@@ -1,0 +1,17 @@
+1. download the arduino IDE: 
+https://www.arduino.cc/en/Main/Software
+
+2. download a zip file containing the Arduino STM32 files from
+https://github.com/rogerclarkmelbourne/Arduino_STM32/archive/master.zip
+
+(The link is available under the smt32duino wikipage: http://wiki.stm32duino.com)
+
+3. copy the downloaded directory in the ~/documents/hardware.
+When the directory doesn't exist yet, just create it.
+
+4. copy the directory from Uwe's usb stick /STM32/BoardManagerFiles-master/STM32 into the ~/documents/hardware folder as well.
+
+5. open the Arduino IDE, go under File/Preferences, and insert under "Additional Boards Manager URLs" the following file:
+https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json
+
+6. under Tools/Board/Boards Manager install the ... (TODO: what was it exactly? )
