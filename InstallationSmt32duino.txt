@@ -9,9 +9,8 @@ https://github.com/rogerclarkmelbourne/Arduino_STM32/archive/master.zip
 3. copy the downloaded directory in the ~/documents/Arduino/hardware.
 When the directory doesn't exist yet, just create it.
 
-4. Now the arm compiler is still missing, you can get it with the following package.
+4. Now the ARM compiler is still missing, you can get it with the following package.
 open the Arduino IDE, go under File/Preferences, and insert under "Additional Boards Manager URLs" the following file:
 https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json
-
 
 5. under Tools/Board/Boards Manager install the "SMT32 Cores by ST-Microelectronics" package.
