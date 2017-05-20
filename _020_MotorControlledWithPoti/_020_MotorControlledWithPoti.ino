@@ -28,6 +28,10 @@ void setup()
   pinMode(POTI5, INPUT_ANALOG);
   pinMode(POTI6, INPUT_ANALOG);
 
+  pinMode(PWM_MOTOR1, PWM);
+  pinMode(PWM_MOTOR2, PWM);
+  pinMode(PWM_MOTOR3, PWM);
+  pinMode(PWM_MOTOR4, PWM);
 
 }
 
@@ -45,33 +49,10 @@ void motorSet(int motorNumber, int force)
   }
   else
   {
-    pinMode(MotorList[motorNumber], PWM);
+    //pinMode(MotorList[motorNumber], PWM);
     analogWrite(MotorList[motorNumber], map(force, -1000, 1000, 0, 65535) );
   }
 }
-
-/*
-
-void loop()
-{
-  motorSet(1, 1000);
-  delay(50);
-  motorSet(1, 0);
-  delay(1000);
-  motorSet(1, -1000);
-  delay(50);
-  motorSet(1, 0);
-  delay(2000);
-}
-
-*/
-
-unsigned long Time_ms  = 0;
-
-int Timer1_ms = 0;
-int Timer2_ms = 0;
-int Timer3_ms = 0;
-int Timer4_ms = 0;
 
 void loop()
 {
@@ -80,42 +61,27 @@ void loop()
   int back_force;
   int bpm;
 
-  hit_force1 = map(analogRead( POTI1 ), 0, 4095, 1, 50); // map analog range 0..4094 to values 20..1000
-  hit_force2 = map(analogRead( POTI2 ), 0, 4095, 1, 50);
-  back_force = map(analogRead( POTI3 ), 0, 4095, 1, 50);
+  hit_force1 = map(analogRead( POTI1 ), 0, 4095, 1, 200); // map analog range 0..4094 to values 20..1000
+  hit_force2 = map(analogRead( POTI2 ), 0, 4095, 1, 200);
+  back_force = map(analogRead( POTI3 ), 0, 4095, 1, 200);
   bpm        = map(analogRead( POTI4 ), 0, 4095, 500, 3000);
 
-  if (Timer1_ms > bpm)
-  {
-    // reset timer
-    Timer1_ms = 0;
+  digitalWrite(LED1, 1); // led on
+  motorSet(1, 1000); // full speed forward
+  delay(hit_force1);
+  digitalWrite(LED1, 0); // led off
 
-    digitalWrite(LED1, 1); // led on
+  digitalWrite(LED2, 1); // led on
+  motorSet(1, -1000); // full speed forward
+  delay(hit_force2);
+  digitalWrite(LED2, 0); // led off
 
-    motorSet(1, 1000); // full speed forward
-  }
-
-  if ( Timer1_ms == hit_force1 )
-  {
-    digitalWrite(LED1, 0); // led on
-    motorSet(1, -1000); // motor back
-    digitalWrite(LED2, 1); // led on
-  }
-
-  if ( Timer1_ms == ( hit_force1 + back_force ) )
-  {
-    digitalWrite(LED2, 0); // led on
-    motorSet(1, 0); // motor off
- 
-  }
-
-  while ( Time_ms == millis() ); // wait for next millisecond
-  Time_ms = millis();
-
-  Timer1_ms++;
-  Timer2_ms++;
-  Timer3_ms++;
-  Timer4_ms++;
-
+  digitalWrite(LED3, 1); // led on
+  motorSet(1, 0); // full speed forward
+  delay(bpm);
+  digitalWrite(LED3, 0); // led off
+  
+  
 }
+
 
