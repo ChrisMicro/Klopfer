@@ -57,7 +57,7 @@ void loop()
 
   if (Timer1_ms > v1)
   {
-    // turn off all leds
+
     digitalWrite(LED1, !digitalRead(LED1)); // toggle led
 
     // reset timer
@@ -66,7 +66,7 @@ void loop()
 
   if (Timer2_ms > v2)
   {
-    // turn off all leds
+
     digitalWrite(LED2, !digitalRead(LED2)); // toggle led
 
     // reset timer
@@ -75,7 +75,7 @@ void loop()
 
   if (Timer3_ms > v3)
   {
-    // turn off all leds
+
     digitalWrite(LED3, !digitalRead(LED3)); // toggle led
 
     // reset timer
@@ -84,7 +84,7 @@ void loop()
 
   if (Timer4_ms > v4)
   {
-    // turn off all leds
+
     digitalWrite(LED4, !digitalRead(LED4)); // toggle led
 
     // reset timer
