@@ -9,6 +9,13 @@
 
 #include "klopfer_pin_definitions.h"
 
+#define POT_BACKFORCE1 POTI1
+#define POT_BPM   POTI2
+#define POT_HITFORCE1  POTI3
+#define POT_HITFORCE2  POTI4
+#define POT_PATTERN1  POTI5
+#define POT_PATTERN2  POTI6
+
 void setup()
 {
   pinMode(LED1, OUTPUT);
@@ -40,24 +47,23 @@ void setup()
 
 }
 
-uint8_t MotorList[] = {PWM_MOTOR1, PWM_MOTOR2, PWM_MOTOR2, PWM_MOTOR2};
+
 
 // motorNumber: 1..4
 // force -1000..1000
-void motorSet(int motorNumber, int force)
+void motorSet(int motorPwmPin, int force)
 {
-  motorNumber--;
   if (force == 0)
   {
-    analogWrite(MotorList[motorNumber], 65536 / 2);
+    analogWrite(motorPwmPin, 65536 / 2);
   }
   else
   {
-    analogWrite(MotorList[motorNumber], map(force, -1000, 1000, 0, 65535) );
+    analogWrite(motorPwmPin, map(force, -1000, 1000, 0, 65535) );
   }
 }
 
-#define HITTIME_MS 50
+#define HITTIME_MS 100
 
 void loop()
 {
@@ -70,16 +76,17 @@ void loop()
   hit_force2 = map(analogRead( POT_HITFORCE2 ), 0, 4095, 100, 1000);
   back_force = map(analogRead( POT_BACKFORCE1 ), 0, 4095, 100, -1000);
   
+  
   bpm        = map(analogRead( POT_BPM ), 0, 4095, 40, 240); // beats per minute ( slow walz till gabber )
 
   digitalWrite(LED4,1); // toggle led
 
-  motorSet(1, hit_force1); // apply hit force
-  motorSet(2, hit_force2); // apply hit force
+  motorSet(PWM_MOTOR1, hit_force1); // apply hit force
+  motorSet(PWM_MOTOR2, hit_force2); // apply hit force
   delay(HITTIME_MS);
 
-  motorSet(1, back_force ); // back
-  motorSet(2, back_force ); // back
+  motorSet(PWM_MOTOR1, back_force ); // back
+  motorSet(PWM_MOTOR2, back_force ); // back
 
   delay(HITTIME_MS);
   digitalWrite(LED4,0); // toggle led
