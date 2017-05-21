@@ -3,7 +3,7 @@
 
   Klopfer Percusive Controller
 
-  May 2017, ChrisMicro, Elektrouwe, Cecille
+  May 2017, ChrisMicro
 
 */
 
@@ -49,44 +49,45 @@ void motorSet(int motorNumber, int force)
   motorNumber--;
   if (force == 0)
   {
+    //pinMode(MotorList[motorNumber], INPUT); // input turns motor off
     analogWrite(MotorList[motorNumber], 65536 / 2);
   }
   else
   {
+    //pinMode(MotorList[motorNumber], PWM);
     analogWrite(MotorList[motorNumber], map(force, -1000, 1000, 0, 65535) );
   }
 }
-
-#define HITTIME_MS 50
 
 void loop()
 {
   int hit_force1;
   int hit_force2;
   int back_force;
-  int bpm;
+  int   bpm_ms;
 
-  hit_force1 = map(analogRead( POT_HITFORCE1 ), 0, 4095, 100, 1000);
-  hit_force2 = map(analogRead( POT_HITFORCE2 ), 0, 4095, 100, 1000);
-  back_force = map(analogRead( POT_BACKFORCE1 ), 0, 4095, 100, -1000);
+  hit_force1 = map(analogRead( POTI1 ), 0, 4095, 1, 50);          // map analog range 0..4094 to values 1..50ms
+  hit_force2 = map(analogRead( POTI2 ), 0, 4095, 1, 50);
+  back_force = map(analogRead( POTI3 ), 0, 4095, 1, 50);
   
-  bpm        = map(analogRead( POT_BPM ), 0, 4095, 40, 240); // beats per minute ( slow walz till gabber )
+  bpm_ms        = map(analogRead( POTI4 ), 0, 4095, 250, 3000);
 
-  digitalWrite(LED4,1); // toggle led
+  digitalWrite(LED1, 1); // led on
+  motorSet(1, 1000); // full speed forward
+  delay(hit_force1);
+  digitalWrite(LED1, 0); // led off
 
-  motorSet(1, hit_force1); // apply hit force
-  motorSet(2, hit_force2); // apply hit force
-  delay(HITTIME_MS);
+  digitalWrite(LED2, 1); // led on
+  motorSet(1, -1000); // full speed forward
+  delay(hit_force2);
+  digitalWrite(LED2, 0); // led off
 
-  motorSet(1, back_force ); // back
-  motorSet(2, back_force ); // back
-
-  delay(HITTIME_MS);
-  digitalWrite(LED4,0); // toggle led
-
-  int    delay_bpm_ms = (1000*60) / bpm - 2* HITTIME_MS;
-  delay( delay_bpm_ms );
- 
+  digitalWrite(LED3, 1); // led on
+  motorSet(1, 0); // full speed forward
+  delay(bpm_ms);
+  digitalWrite(LED3, 0); // led off
+  
+  
 }
 
 
