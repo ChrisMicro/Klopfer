@@ -21,12 +21,17 @@ void setup()
   pinMode(TRIG3, INPUT_ANALOG);
   pinMode(TRIG4, INPUT_ANALOG);
 
-  pinMode(POTI1, INPUT_ANALOG);
-  pinMode(POTI2, INPUT_ANALOG);
-  pinMode(POTI3, INPUT_ANALOG);
-  pinMode(POTI4, INPUT_ANALOG);
-  pinMode(POTI5, INPUT_ANALOG);
-  pinMode(POTI6, INPUT_ANALOG);
+
+// Motor Force Potentiometers
+  pinMode(POT_BACKFORCE1, INPUT_ANALOG);   
+  pinMode(POT_HITFORCE1, INPUT_ANALOG);
+  pinMode(POT_HITFORCE2, INPUT_ANALOG);
+  
+  pinMode(POT_BPM, INPUT_ANALOG);
+  
+// Rythm PATTERN selection left & right motor
+  pinMode(POT_PATTERN1, INPUT_ANALOG);
+  pinMode(POT_PATTERN2, INPUT_ANALOG);
 
   pinMode(PWM_MOTOR1, PWM);
   pinMode(PWM_MOTOR2, PWM);
@@ -59,12 +64,13 @@ void loop()
   int hit_force1;
   int hit_force2;
   int back_force;
-  int bpm;
+  int   bpm_ms;
 
-  hit_force1 = map(analogRead( POTI1 ), 0, 4095, 1, 200); // map analog range 0..4094 to values 20..1000
-  hit_force2 = map(analogRead( POTI2 ), 0, 4095, 1, 200);
-  back_force = map(analogRead( POTI3 ), 0, 4095, 1, 200);
-  bpm        = map(analogRead( POTI4 ), 0, 4095, 500, 3000);
+  hit_force1 = map(analogRead( POTI1 ), 0, 4095, 1, 50);          // map analog range 0..4094 to values 1..50ms
+  hit_force2 = map(analogRead( POTI2 ), 0, 4095, 1, 50);
+  back_force = map(analogRead( POTI3 ), 0, 4095, 1, 50);
+  
+  bpm_ms        = map(analogRead( POTI4 ), 0, 4095, 250, 3000);
 
   digitalWrite(LED1, 1); // led on
   motorSet(1, 1000); // full speed forward
@@ -78,7 +84,7 @@ void loop()
 
   digitalWrite(LED3, 1); // led on
   motorSet(1, 0); // full speed forward
-  delay(bpm);
+  delay(bpm_ms);
   digitalWrite(LED3, 0); // led off
   
   

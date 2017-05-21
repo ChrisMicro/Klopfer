@@ -10,8 +10,8 @@
 
 */
 
-#define POTI1 PA4
-#define POTI2 PA5
+#define POTI2 PA4
+#define POTI1 PA5
 #define POTI3 PA6
 #define POTI4 PA7
 #define POTI5 PB0
@@ -33,6 +33,8 @@ void setup()
   pinMode(POTI2, INPUT_ANALOG);
   pinMode(POTI3, INPUT_ANALOG);
   pinMode(POTI4, INPUT_ANALOG);
+  pinMode(POTI5, INPUT_ANALOG);
+  pinMode(POTI6, INPUT_ANALOG);
 
 }
 
@@ -52,8 +54,8 @@ void loop()
 
   v1 = map(analogRead( POTI1 ), 0, 4095, 20, 1000); // map analog range 0..4094 to values 20..1000
   v2 = map(analogRead( POTI2 ), 0, 4095, 20, 1000);
-  v3 = map(analogRead( POTI3 ), 0, 4095, 20, 1000);
-  v4 = map(analogRead( POTI4 ), 0, 4095, 20, 1000);
+  v3 = map(analogRead( POTI5 ), 0, 4095, 20, 1000);
+  v4 = map(analogRead( POTI6 ), 0, 4095, 20, 1000);
 
   if (Timer1_ms > v1)
   {
